@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio | Jasa Alat & Website</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        :root {
+            --primary: #2d3436;
+            --accent: #0984e3;
+            --bg: #f5f6fa;
+            --card: #ffffff;
+            --text: #2d3436;
+            --text-light: #636e72;
+            --border: #dfe6e9;
+            --gradient: linear-gradient(135deg, #0984e3, #6c5ce7);
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* Navbar */
+        nav {
+            background: var(--card);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 65px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        /* Hero */
+        .hero {
+            background: var(--gradient);
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+        }
+
+        .hero .highlight {
+            color: #ffeaa7;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-light {
+            background: white;
+            color: var(--accent);
+        }
+
+        .btn-light:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+            margin-left: 10px;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: var(--accent);
+        }
+
+        /* Sections */
+        section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .section-title .line {
+            width: 60px;
+            height: 4px;
+            background: var(--gradient);
+            margin: 0 auto;
+            border-radius: 2px;
+        }
+
+        /* Layanan */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .service-card {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 35px 25px;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border-color: transparent;
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #e8f4fd;
+            color: var(--accent);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin: 8px 3px;
+        }
+
+        /* Portofolio */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .portfolio-card {
+            background: var(--card);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .portfolio-img {
+            height: 200px;
+            background: linear-gradient(135deg, #dfe6e9, #b2bec3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .portfolio-info {
+            padding: 20px;
+        }
+
+        .portfolio-info h3 {
+            margin-bottom: 5px;
+        }
+
+        .portfolio-info p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+        }
+
+        /* Contact */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .contact-info p {
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+
+        .contact-info strong {
+            color: var(--text);
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            transition: border-color 0.3s;
+            background: var(--card);
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+            width: 100%;
+            padding: 14px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(108, 92, 231, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 25px;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #74b9ff;
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 65px;
+                left: 0;
+                right: 0;
+                background: var(--card);
+                padding: 20px;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .btn-outline {
+                margin-left: 0;
+                margin-top: 10px;
+            }
+
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">⚡ TechForge</div>
+            <div class="hamburger" onclick="toggleMenu()">☰</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#services">Layanan</a></li>
+                <li><a href="#portfolio">Portofolio</a></li>
+                <li><a href="#contact">Kontak</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+        <h1>Kami Wujudkan <span class="highlight">Ide Anda</span> Jadi Nyata</h1>
+        <p>Jasa pembuatan alat custom (IoT, otomasi, alat ukur) & website profesional untuk bisnis dan personal.</p>
+        <div>
+            <a href="#contact" class="btn btn-light">Pesan Sekarang</a>
+            <a href="#portfolio" class="btn btn-outline">Lihat Karya</a>
+        </div>
+    </section>
+
+    <!-- LAYANAN -->
+    <section id="services">
+        <div class="section-title">
+            <h2>Layanan Kami</h2>
+            <div class="line"></div>
+        </div>
+        <div class="services-grid">
+            <!-- Alat -->
+            <div class="service-card">
+                <div class="service-icon">🔧</div>
+                <h3>Pembuatan Alat Custom</h3>
+                <p>Alat sesuai spesifikasi Anda: IoT, sistem monitoring, alat ukur, kontroler, dan otomasi industri.</p>
+                <span class="tag">Arduino</span>
+                <span class="tag">ESP32</span>
+                <span class="tag">Sensor</span>
+                <span class="tag">PLC</span>
+            </div>
+            <!-- Website -->
+            <div class="service-card">
+                <div class="service-icon">🌐</div>
+                <h3>Pembuatan Website</h3>
+                <p>Website company profile, landing page, dashboard, toko online, hingga sistem informasi custom.</p>
+                <span class="tag">HTML/CSS/JS</span>
+                <span class="tag">React</span>
+                <span class="tag">Node.js</span>
+                <span class="tag">Database</span>
+            </div>
+            <!-- Konsultasi -->
+            <div class="service-card">
+                <div class="service-icon">💡</div>
+                <h3>Konsultasi Teknis</h3>
+                <p>Bingung mulai dari mana? Konsultasikan proyek Anda dan dapatkan solusi teknis yang tepat.</p>
+                <span class="tag">Konsultasi Gratis</span>
+                <span class="tag">Desain Sistem</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTOFOLIO -->
+    <section id="portfolio">
+        <div class="section-title">
+            <h2>Portofolio</h2>
+            <div class="line"></div>
+        </div>
+        <div class="portfolio-grid">
+            <div class="portfolio-card">
+                <div class="portfolio-img">🌡️</div>
+                <div class="portfolio-info">
+                    <h3>Sistem Monitoring Suhu & Kelembaban</h3>
+                    <p>IoT dashboard real-time dengan ESP32 + DHT22 + Firebase. Notifikasi Telegram jika suhu abnormal.</p>
+                    <span class="tag">IoT</span>
+                    <span class="tag">ESP32</span>
+                    <span class="tag">Firebase</span>
+                </div>
+            </div>
+            <div class="portfolio-card">
+                <div class="portfolio-img">🏪</div>
+                <div class="portfolio-info">
+                    <h3>Website Toko Online UMKM</h3>
+                    <p>Website e-commerce lengkap dengan admin panel, manajemen produk, dan payment gateway.</p>
+                    <span class="tag">React</span>
+                    <span class="tag">Express.js</span>
+                    <span class="tag">MySQL</span>
+                </div>
+            </div>
+            <div class="portfolio-card">
+                <div class="portfolio-img">🤖</div>
+                <div class="portfolio-info">
+                    <h3>Alat Sortir Otomatis</h3>
+                    <p>Conveyor belt dengan sensor warna & servo untuk sortir objek berdasarkan warna.</p>
+                    <span class="tag">Arduino</span>
+                    <span class="tag">Sensor Warna</span>
+                    <span class="tag">Servo</span>
+                </div>
+            </div>
+            <div class="portfolio-card">
+                <div class="portfolio-img">📊</div>
+                <div class="portfolio-info">
+                    <h3>Dashboard Monitoring Proyek</h3>
+                    <p>Web app untuk tracking progress proyek, timeline, dan laporan otomatis.</p>
+                    <span class="tag">Laravel</span>
+                    <span class="tag">Chart.js</span>
+                    <span class="tag">API</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KONTAK -->
+    <section id="contact">
+        <div class="section-title">
+            <h2>Hubungi Saya</h2>
+            <div class="line"></div>
+        </div>
+        <div class="contact-wrapper">
+            <div class="contact-info">
+                <p>📧 <strong>Email:</strong> nama@email.com</p>
+                <p>📱 <strong>WhatsApp:</strong> +62 812-3456-7890</p>
+                <p>📍 <strong>Lokasi:</strong> [Kota Anda], Indonesia</p>
+                <p style="margin-top: 20px;">💬 Ceritakan proyek Anda, saya siap bantu wujudkan! Konsultasi awal gratis.</p>
+            </div>
+            <form onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <input type="text" placeholder="Nama Lengkap" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Alamat Email" required>
+                </div>
+                <div class="form-group">
+                    <textarea placeholder="Ceritakan proyek Anda... (alat/website/budget/timeline)" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Kirim Pesan ✉️</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2025 <strong>TechForge</strong> — Jasa Pembuatan Alat & Website. Dibuat dengan ❤️</p>
+        <p style="margin-top: 5px;">
+            <a href="#home">Beranda</a> • 
+            <a href="#services">Layanan</a> • 
+            <a href="#portfolio">Portofolio</a> • 
+            <a href="#contact">Kontak</a>
+        </p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        // Tutup menu saat link diklik (mobile)
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+            });
+        });
+
+        function handleSubmit(e) {
+            e.preventDefault();
+            alert('✅ Terima kasih! Pesan Anda telah dikirim. Saya akan menghubungi Anda secepatnya melalui email/WhatsApp.');
+            e.target.reset();
+        }
+    </script>
+
+</body>
+</html>
